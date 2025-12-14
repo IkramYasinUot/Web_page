@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoMarket - Buy & Sell Cars</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <i class="fas fa-car"></i>
+          <span>Makran Cars</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#" id="homeLink" class="nav-link active">Home</a>
+          <a href="#" id="browseLink" class="nav-link">Browse Cars</a>
+          <a href="#" id="sellLink" class="nav-link">Sell Your Car</a>
+          <a href="#" id="profileLink" class="nav-link" style="display: none"
+            >Profile</a
+          >
+          <a href="#" id="loginLink" class="nav-link">Login</a>
+          <a href="#" id="registerLink" class="nav-link">Register</a>
+          <a href="#" id="logoutLink" class="nav-link" style="display: none"
+            >Logout</a
+          >
+        </div>
+        <div class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Auth Modals -->
+    <div id="loginModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="close" data-modal="loginModal">&times;</span>
+        <h2>Login to AutoMarket</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input
+              type="email"
+              id="loginEmail"
+              required
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input
+              type="password"
+              id="loginPassword"
+              required
+              placeholder="Enter your password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p style="text-align: center; margin-top: 1rem">
+          Don't have an account?
+          <a href="#" id="showRegister" style="color: var(--primary-color)"
+            >Register here</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <div id="registerModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span class="close" data-modal="registerModal">&times;</span>
+        <h2>Join AutoMarket</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="registerName">Full Name:</label>
+            <input
+              type="text"
+              id="registerName"
+              required
+              placeholder="Enter your full name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">Email:</label>
+            <input
+              type="email"
+              id="registerEmail"
+              required
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerPhone">Phone:</label>
+            <input
+              type="tel"
+              id="registerPhone"
+              required
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password:</label>
+            <input
+              type="password"
+              id="registerPassword"
+              required
+              minlength="6"
+              placeholder="Enter your password (min 6 characters)"
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerConfirmPassword">Confirm Password:</label>
+            <input
+              type="password"
+              id="registerConfirmPassword"
+              required
+              placeholder="Confirm your password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%">
+            Create Account
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main Content Sections -->
+    <main>
+      <!-- Home Section -->
+      <section id="homeSection" class="section active">
+        <div class="hero">
+          <div class="hero-content">
+            <h1>Find Your Perfect Car</h1>
+            <p>
+              Buy and sell cars with confidence. Join thousands of satisfied
+              customers.
+            </p>
+            <div class="hero-buttons">
+              <button class="btn btn-primary" id="heroBrowse">
+                Browse Cars
+              </button>
+              <button class="btn btn-secondary" id="heroSell">
+                Sell Your Car
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="features">
+          <div class="container">
+            <h2>Why Choose AutoMarket?</h2>
+            <div class="features-grid">
+              <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Verified Sellers</h3>
+                <p>
+                  All sellers are verified for your safety and peace of mind.
+                </p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-search"></i>
+                <h3>Easy Search</h3>
+                <p>Find your dream car with our advanced search filters.</p>
+              </div>
+              <div class="feature-card">
+                <i class="fas fa-tag"></i>
+                <h3>Best Prices</h3>
+                <p>Get the best deals with our competitive pricing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Browse Cars Section -->
+      <section id="browseSection" class="section">
+        <div class="container">
+          <h2>Browse Available Cars</h2>
+
+          <div class="search-filters">
+            <div class="filter-group">
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by brand, model, description..."
+              />
+              <select id="brandFilter">
+                <option value="">All Brands</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Ford">Ford</option>
+                <option value="BMW">BMW</option>
+                <option value="Mercedes">Mercedes</option>
+                <option value="Audi">Audi</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Kia">Kia</option>
+                <option value="Volkswagen">Volkswagen</option>
+              </select>
+              <select id="priceFilter">
+                <option value="">Any Price</option>
+                <option value="0-5000">Under $5,000</option>
+                <option value="5000-15000">$5,000 - $15,000</option>
+                <option value="15000-30000">$15,000 - $30,000</option>
+                <option value="30000-50000">$30,000 - $50,000</option>
+                <option value="50000-100000">$50,000 - $100,000</option>
+                <option value="100000+">Over $100,000</option>
+              </select>
+              <select id="yearFilter">
+                <option value="">Any Year</option>
+                <option value="2020-2024">2020-2024</option>
+                <option value="2015-2019">2015-2019</option>
+                <option value="2010-2014">2010-2014</option>
+                <option value="2005-2009">2005-2009</option>
+                <option value="2000-2004">2000-2004</option>
+                <option value="1990-1999">1990-1999</option>
+              </select>
+              <button id="applyFilters" class="btn btn-primary">Search</button>
+              <button id="clearFilters" class="btn btn-secondary">Clear</button>
+            </div>
+          </div>
+
+          <div class="search-results-info">
+            <span id="resultsCount">Loading cars...</span>
+          </div>
+
+          <div id="carsList" class="cars-grid">
+            <!-- Cars will be loaded here dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Sell Car Section -->
+      <section id="sellSection" class="section">
+        <div class="container">
+          <h2>Sell Your Car</h2>
+          <div class="sell-form-container">
+            <div
+              id="sellLoginPrompt"
+              class="login-prompt"
+              style="display: none"
+            >
+              <div class="login-prompt-content">
+                <h3>Login Required</h3>
+                <p>Please login or register to list your car for sale.</p>
+                <div class="login-prompt-buttons">
+                  <button class="btn btn-primary" id="promptLogin">
+                    Login
+                  </button>
+                  <button class="btn btn-secondary" id="promptRegister">
+                    Register
+                  </button>
+                </div>
+              </div>
+            </div>
+            <form id="sellCarForm" style="display: none">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="carBrand">Brand *</label>
+                  <select id="carBrand" required>
+                    <option value="">Select Brand</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Ford">Ford</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Kia">Kia</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="carModel">Model *</label>
+                  <input
+                    type="text"
+                    id="carModel"
+                    required
+                    placeholder="e.g., Camry, Civic, Mustang"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="carYear">Year *</label>
+                  <input
+                    type="number"
+                    id="carYear"
+                    min="1990"
+                    max="2024"
+                    required
+                    placeholder="e.g., 2022"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="carPrice">Price ($) *</label>
+                  <input
+                    type="number"
+                    id="carPrice"
+                    min="0"
+                    required
+                    placeholder="e.g., 25000"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="carMileage">Mileage</label>
+                  <input
+                    type="number"
+                    id="carMileage"
+                    min="0"
+                    placeholder="in miles (optional)"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="carFuel">Fuel Type</label>
+                  <select id="carFuel">
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Hybrid">Hybrid</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Photo Upload Section -->
+              <div class="form-group">
+                <label for="carPhotos">Car Photos</label>
+                <div class="photo-upload-container">
+                  <div class="photo-upload-area" id="photoUploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload photos or drag and drop</p>
+                    <span>PNG, JPG, JPEG up to 5MB each</span>
+                    <input
+                      type="file"
+                      id="carPhotos"
+                      multiple
+                      accept="image/*"
+                      style="display: none"
+                    />
+                  </div>
+                  <div class="photo-preview" id="photoPreview"></div>
+                </div>
+                <small>Upload up to 5 photos of your car</small>
+              </div>
+
+              <div class="form-group">
+                <label for="carDescription">Description *</label>
+                <textarea
+                  id="carDescription"
+                  rows="4"
+                  required
+                  placeholder="Describe your car's condition, features, history..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="carContact">Contact Phone *</label>
+                <input
+                  type="tel"
+                  id="carContact"
+                  required
+                  placeholder="e.g., +1234567890"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-large">
+                List Car for Sale
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Profile Section -->
+      <section id="profileSection" class="section">
+        <div class="container">
+          <h2>My Profile</h2>
+          <div class="profile-container">
+            <div class="profile-info">
+              <h3>Personal Information</h3>
+              <div id="userInfo">
+                <!-- User info will be loaded here -->
+              </div>
+            </div>
+            <div class="my-cars">
+              <h3>My Listed Cars</h3>
+              <div id="myCarsList">
+                <!-- User's cars will be loaded here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Car Detail Modal -->
+    <div id="carDetailModal" class="modal" style="display: none">
+      <div class="modal-content large">
+        <span class="close" data-modal="carDetailModal">&times;</span>
+        <div id="carDetailContent">
+          <!-- Car details will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
